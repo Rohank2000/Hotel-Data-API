@@ -228,7 +228,7 @@ app.delete("/hotels/:hotelId", async (req, res) => {
     } else {
       res.status(201).json({
         message: "Deleted Hotel Data from the Database using Hotel Id.",
-        deleteHotelDataById,
+        deleteHotelDataById
       });
     }
   } catch (error) {
