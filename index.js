@@ -223,10 +223,14 @@ const deleteHotelById = async (HotelId) => {
 app.delete("/hotels/:hotelId", async (req, res) => {
   try {
     const deleteHotelDataById = await deleteHotelById(req.params.hotelId);
-    res.status(201).json({
-      message: "Deleted Hotel Data from the Database using Hotel Id.",
-      deleteHotelDataById,
-    });
+    if (!deleteHotelDataById) {
+      res.status(404).json({ error: "Hotel Data Not Found to Delete." });
+    } else {
+      res.status(201).json({
+        message: "Deleted Hotel Data from the Database using Hotel Id.",
+        deleteHotelDataById,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       error: "Failed to Delete Hotel Data From the Database using Hotel Id.",
