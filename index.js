@@ -215,12 +215,13 @@ const deleteHotelById = async (HotelId) => {
   try {
     const HotelById = await hotelModel.findByIdAndDelete(HotelId);
     console.log("The 'New Hotel' Deleted", HotelById);
+    return HotelById;
   } catch (error) {
     console.log(error);
   }
 };
 
-app.delete("/hotels/:hotelId", async (req, res) => {
+app.delete("/hotels/identification/:hotelId", async (req, res) => {
   try {
     const deleteHotelDataById = await deleteHotelById(req.params.hotelId);
     if (!deleteHotelDataById) {
